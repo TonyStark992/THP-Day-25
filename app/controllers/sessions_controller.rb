@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
     # on vérifie si l'utilisateur existe bien ET si on arrive à l'authentifier (méthode bcrypt) avec le mot de passe 
     if user && user.authenticate(params[:password])
       log_in(user)
+      remember(user)
       flash.now[:success] = 'Bienvenue'
       redirect_to '/'
 
@@ -19,7 +20,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session.delete(:user_id)
+    log_out(user)
     flash.now[:success] = 'Vous êtes maintenant déconnecté'
     redirect_to '/'
   end
