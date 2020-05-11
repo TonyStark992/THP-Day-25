@@ -63,6 +63,7 @@ group :development, :test do
   gem 'rubocop-performance'
   gem 'rubocop-rails'
   gem 'table_print'
-  gem 'faker'
   gem 'pry'
 end
+
+gem 'faker'
