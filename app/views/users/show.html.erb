@@ -1,0 +1,18 @@
+<h1>Profil de <%= @user.first_name %> <%= @user.last_name %></h1>
+<br/>
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="http://www.aovc.org/wp-content/uploads/2015/10/photo-%C3%A0-venir-400x369.jpg" alt="Card image cap">
+    <div class="card-body">
+        <h5 class="card-title"><%= @user.first_name %> <%= @user.last_name %></h5>
+        <p class="card-text"><a href="<%= city_path(@user.city.id) %>"> <%= @user.city.name %> </a> <br/> <%= @user.age %> ans</p>
+        <p class="card-text"><%= @user.email %></p>
+        <p class="card-text">"<%= @user.description %>"</p>
+        <p class="card-text">Membre depuis le <%= @user.created_at.strftime("%m/%d/%Y") %></p>
+    </div>
+</div>
+<br/>
+<% @user_gossips.each do |gossip| %>
+<p>
+    Potin n°<%= gossip.id %> | <strong><a href="<%= gossip_path(gossip.id) %>"><%= gossip.title %></a></strong>
+</p>
+<% end %>

@@ -1,0 +1,30 @@
+<h5>C'est ici que vous pouvez partager votre potin, et tout le monde pourra en profiter !</h5>
+
+<p>
+    <% if @gossip != nil%>
+        <% if @gossip.errors.any? %>
+        <p>Nous n'avons pas réussi à créer le potin pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @gossip.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        <% end %>
+    <% end %>
+</p>
+
+<p>
+    <%= form_tag gossips_path, method: "post" do %>
+
+      <%= label_tag 'Titre du potin' %>
+      <%= text_field_tag 'title'%>
+      <br /> <br />
+
+      <%= label_tag 'Potin' %>
+      <%= text_area_tag 'content'%>
+      <br /> <br />
+
+      <%= submit_tag "Valider" %>
+
+    <% end %>
+</p>

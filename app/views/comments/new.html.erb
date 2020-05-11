@@ -1,0 +1,26 @@
+<h5>Ecrivez votre commentaire ici</h5>
+
+<p>
+    <% if @comment != nil%>
+        <% if @comment.errors.any? %>
+        <p>Nous n'avons pas réussi à créer le commentaire pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        <% end %>
+    <% end %>
+</p>
+
+<p>
+    <%= form_tag gossip_comments_path, method: "post" do %>
+
+      <%= label_tag 'Commentaire' %>
+      <%= text_area_tag 'content'%>
+      <br /> <br />
+
+      <%= submit_tag "Valider" %>
+
+    <% end %>
+</p>

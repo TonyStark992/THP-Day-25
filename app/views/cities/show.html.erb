@@ -1,0 +1,18 @@
+<h1>Page de la ville <%= @city.name %></h1>
+<br/>
+
+<h3>Voici les potins de <%= @city.name %></h3>
+<br/>
+<% @city.users.each do |user| %>
+    <% user.gossips.each do |gossip| %>
+        <div class="list-group">
+            <a href="<%= gossip_path(gossip.id) %>" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1"><%= gossip.title %></h5>
+                    <small>Créé le <%= gossip.created_at.to_time.strftime("%m/%d/%Y") %></small>
+                </div>
+              <p class="mb-1"><%= gossip.content %></p>
+            </a>
+        </div>
+    <% end %>
+<% end %>

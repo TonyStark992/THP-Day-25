@@ -1,0 +1,25 @@
+<h1>Editer le commentaire</h1></br>
+
+<p>
+    <% if @comment != nil%>
+        <% if @comment.errors.any? %>
+        <p>Nous n'avons pas réussi à éditer le commentaire pour la (ou les) raison(s) suivante(s) :</p>
+        <ul>
+            <% @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+        </ul>
+        <% end %>
+    <% end %>
+</p>
+
+<%= form_for [@gossip, @comment] do |f| %>
+  <div class="form-group">
+    <label>Texte du commentaire</label>
+    <%= f.text_area :content, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Modifier le commentaire</button>
+    <a href="<%= gossip_comment_path(@gossip.id, @comment.id) %>" class="btn btn-warning" data-confirm="Êtes-vous certain de vouloir supprimer ce commentaire ?" data-method="delete">Supprimer</a>
+  </div>
+<% end %>

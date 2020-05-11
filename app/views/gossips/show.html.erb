@@ -1,0 +1,34 @@
+<h1>Potin n°<%= @gossip.id %></h1>
+<br/>
+<p>
+    <strong><%= @gossip.title %></strong><br/>
+    <%= @gossip.content %><br/>
+    <br/>
+    Créé le <%= @gossip.created_at.to_time.strftime("%m/%d/%Y") %> par <a href="/users/<%= @gossip.user.id %>"> <%= @gossip.user.first_name %> <%= @gossip.user.last_name %></a> de <a href="<%= city_path(@gossip.user.city.id) %>"> <%= @gossip.user.city.name %> </a>
+</p>
+
+<p>
+    <a href="<%= new_gossip_comment_path(@gossip.id) %>" class="btn btn-primary">Ecrire un commentaire</a>
+</p>
+
+<p>
+    <% if @gossip.user_id == current_user.id %>
+    <a href="<%= edit_gossip_path(@gossip.id) %>" class="btn btn-primary">Editer le potin</a>
+    <% end %>
+    <a href="<%= gossip_path(@gossip.id) %>" class="btn btn-warning" data-confirm="Êtes-vous certain de vouloir supprimer le potin ?" data-method="delete">Supprimer</a>
+</p>
+
+<p>
+    <h4><%= @gossip.comments.count %> Commentaires</h4>
+    <% @gossip.comments.each do |comment| %>
+        <div class="list-group">
+            <a href="<%= edit_gossip_comment_path(@gossip.id, comment.id) %>" class="list-group-item list-group-item-action">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><%= comment.user.first_name %></h5>
+                <small><%= time_ago_in_words(comment.created_at) %></small>
+            </div>
+            <p class="mb-1"><%= comment.content %></p>
+            </a>
+        </div>
+    <% end %>
+</p>
