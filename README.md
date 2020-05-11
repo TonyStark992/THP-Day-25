@@ -1,9 +1,9 @@
 Projet | The Gossip Project
 --------------------------------------------
 
-Repository contenant le projet du 24ème jour de The Hacking Project
+Repository contenant le projet du 25ème jour de The Hacking Project
 
-Poursuite du projet avec ajout de login et session
+Poursuite du projet avec ajout des cookies et mise en ligne sur Heroku
 
 --------------------------------------------
 
