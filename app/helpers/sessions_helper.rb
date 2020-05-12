@@ -13,7 +13,7 @@ module SessionsHelper
 
       # nous allons prendre le remember_token stocké en cookie, le hasher, puis le comparer avec notre remember_digest stocké en base
       if user && BCrypt::Password.new(user.remember_digest).is_password?(cookies[:remember_token])
-        log_in user
+        log_in(user)
         current_user = user
       end
     end
